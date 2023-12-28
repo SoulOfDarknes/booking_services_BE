@@ -1,0 +1,40 @@
+import { IsString, IsNumber, IsOptional, MinLength, IsEnum } from 'class-validator';
+
+import { BicycleColors } from '@common/enums/bicycle-colors.enum';
+import { BicycleStatus } from '@common/enums/bicycle-status.enum';
+
+export class UpdateBicycleDto {
+    @IsString()
+    @IsOptional()
+    @MinLength(5)
+    readonly name?: string;
+
+    @IsString()
+    @IsOptional()
+    @MinLength(5)
+    readonly type?: string;
+
+    @IsString()
+    @IsOptional()
+    @MinLength(5)
+    @IsEnum(BicycleColors)
+    readonly color?: BicycleColors;
+
+    @IsNumber()
+    @IsOptional()
+    readonly wheelSize?: number;
+
+    @IsNumber()
+    @IsOptional()
+    readonly price?: number;
+
+    @IsString()
+    @IsOptional()
+    @MinLength(5)
+    readonly description?: string;
+
+    @IsString()
+    @IsOptional()
+    @IsEnum(BicycleStatus)
+    readonly status?: BicycleStatus;
+}
