@@ -7,7 +7,7 @@ This application allows users to add, view, edit, and delete bicycles, as well a
 ## Installation
 Before installing the application, ensure that the following prerequisites are met:
 
-- Node.js: The application requires Node.js to run. If you don't have Node.js installed, download and install it from Node.js official website. We recommend using the latest LTS version.
+- Node.js: The application requires Node.js to run. If you don't have Node.js installed, download and install it from Node.js official website. Recommend using the latest LTS version.
 
 - MongoDB: Install MongoDB server locally. Follow the instructions on the MongoDB official website for installation.
 
