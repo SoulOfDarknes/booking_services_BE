@@ -11,7 +11,7 @@ Before installing the application, ensure that the following prerequisites are m
 
 - MongoDB: Install MongoDB server locally. Follow the instructions on the MongoDB official website for installation.
 
-- Environment Setup: Create a .env file in the root directory of the project. Use the provided .env.defaults as a template and fill in the necessary environment variables.
+- Environment Setup: Create a (.env) file in the root directory of the project. Use the provided (.env.defaults) as a template and fill in the necessary environment variables.
 
 - Run command
 
