@@ -81,10 +81,7 @@ export class BicycleService {
         const avgPrice = await this.bicycleModel.aggregate([
             { $group: { _id: null, avgPrice: { $avg: "$price" } } }
         ]);
-        console.log(totalCount)
-        console.log(availableCount)
-        console.log(busyCount)
-        console.log(avgPrice)
+
         return {
             totalCount,
             availableCount,
