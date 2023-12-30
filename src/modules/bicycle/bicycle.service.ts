@@ -76,12 +76,15 @@ export class BicycleService {
 
     async getStatistics(): Promise<any> {
         const totalCount = await this.bicycleModel.countDocuments().exec();
-        const availableCount = await this.bicycleModel.countDocuments({ status: 'available' }).exec();
-        const busyCount = await this.bicycleModel.countDocuments({ status: 'busy' }).exec();
+        const availableCount = await this.bicycleModel.countDocuments({ status: 'Available' }).exec();
+        const busyCount = await this.bicycleModel.countDocuments({ status: 'Busy' }).exec();
         const avgPrice = await this.bicycleModel.aggregate([
             { $group: { _id: null, avgPrice: { $avg: "$price" } } }
         ]);
-
+        console.log(totalCount)
+        console.log(availableCount)
+        console.log(busyCount)
+        console.log(avgPrice)
         return {
             totalCount,
             availableCount,

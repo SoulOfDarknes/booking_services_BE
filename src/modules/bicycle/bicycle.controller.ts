@@ -13,6 +13,11 @@ export class BicycleController {
         return this.bicycleService.findAll();
     }
 
+    @Get('statistics')
+    async getStatistics() {
+        return this.bicycleService.getStatistics();
+    }
+
     @Get(':id')
     async getBicycle(@Param('id') id: string) {
         return this.bicycleService.findOne(id);
@@ -32,5 +37,7 @@ export class BicycleController {
     async deleteBicycle(@Param('id') id: string) {
         return this.bicycleService.remove(id);
     }
+
+
 
 }
