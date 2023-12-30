@@ -15,12 +15,10 @@ export class UpdateBicycleDto {
 
     @IsString()
     @IsOptional()
-    @MinLength(5)
     readonly type?: string;
 
     @IsString()
     @IsOptional()
-    @MinLength(5)
     @IsEnum(BicycleColors)
     readonly color?: BicycleColors;
 

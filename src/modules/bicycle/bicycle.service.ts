@@ -52,6 +52,7 @@ export class BicycleService {
             }
             return updatedBicycle;
         } catch (error) {
+            console.error('Error when update bicycle:', error);
             if (error.code === 11000) {
                 throw new ConflictException('A bicycle with this ID already exists.');
             } else {
@@ -61,11 +62,11 @@ export class BicycleService {
     }
 
 
-    async remove(bikeId: string): Promise<any> {
+    async remove(id: string): Promise<any> {
         try {
-            const result = await this.bicycleModel.findByIdAndDelete(bikeId).exec();
+            const result = await this.bicycleModel.findOneAndDelete({ id }).exec();
             if (!result) {
-                throw new NotFoundException(`Bicycle with ID ${bikeId} not found`);
+                throw new NotFoundException(`Bicycle with ID ${id} not found`);
             }
             return result;
         } catch (error) {
