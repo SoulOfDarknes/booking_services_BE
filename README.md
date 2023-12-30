@@ -7,11 +7,11 @@ This application allows users to add, view, edit, and delete bicycles, as well a
 ## Installation
 Before installing the application, ensure that the following prerequisites are met:
 
-- Node.js: The application requires Node.js to run. If you don't have Node.js installed, download and install it from Node.js official website. We recommend using the latest LTS version.
+- Node.js: The application requires Node.js to run. If you don't have Node.js installed, download and install it from Node.js official website. Recommend using the latest LTS version.
 
 - MongoDB: Install MongoDB server locally. Follow the instructions on the MongoDB official website for installation.
 
-- Environment Setup: Create a .env file in the root directory of the project. Use the provided .env.defaults as a template and fill in the necessary environment variables.
+- Environment Setup: Create a (.env) file in the root directory of the project. Use the provided (.env.defaults) as a template and fill in the necessary environment variables.
 
 - Run command
 
@@ -44,3 +44,22 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+## Deploy
+#### New API version deploy to Docker Hub
+Go to the branch that was chosen as branch for new version build: <br/>
+```git checkout branch-for-build```<br/>
+
+Tag this branch with new server version: <br/>
+```git tag sv0.0.5```<br/>
+
+Push branch and tag to the origin: <br/>
+```git push origin branch-for-build``` <br/>
+```git push --tags```<br/>
+
+#### Deploy latest version of build to AWS
+Remove local branch "deploy-server" if it exists <br/>
+```git branch -D deploy-server``` <br/>
+
+Create and push special branch "deploy-server" to the server: <br/>
+```git checkout -b deploy-server```<br/>
+```git push origin deploy-server --force```<br/>
