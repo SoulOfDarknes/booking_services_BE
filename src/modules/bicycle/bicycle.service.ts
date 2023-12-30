@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -18,10 +18,18 @@ export class BicycleService {
         }
     }
 
-
     async create(createBicycleDto: CreateBicycleDto): Promise<Bicycle> {
-        const newBicycle = new this.bicycleModel(createBicycleDto);
-        return newBicycle.save();
+
+        const bicycle = new this.bicycleModel(createBicycleDto);
+        try {
+            return await bicycle.save();
+        } catch (error) {
+            if (error.code === 11000) {
+                throw new ConflictException('A bicycle with this ID already exists.');
+            } else {
+                throw new InternalServerErrorException();
+            }
+        }
     }
 
     async findOne(id: string): Promise<Bicycle | null> {
@@ -38,28 +46,32 @@ export class BicycleService {
 
     async update(id: string, updateBicycleDto: UpdateBicycleDto): Promise<Bicycle> {
         try {
-            const updatedBicycle = await this.bicycleModel.findByIdAndUpdate(id, updateBicycleDto, { new: true }).exec();
+            const updatedBicycle = await this.bicycleModel.findOneAndUpdate({ id }, updateBicycleDto, { new: true }).exec();
             if (!updatedBicycle) {
                 throw new NotFoundException(`Bicycle with ID ${id} not found`);
             }
             return updatedBicycle;
         } catch (error) {
-            throw error;
+            if (error.code === 11000) {
+                throw new ConflictException('A bicycle with this ID already exists.');
+            } else {
+                throw new InternalServerErrorException();
+            }
         }
     }
 
-    async remove(id: string): Promise<any> {
+
+    async remove(bikeId: string): Promise<any> {
         try {
-            const result = await this.bicycleModel.findByIdAndDelete(id).exec();
+            const result = await this.bicycleModel.findByIdAndDelete(bikeId).exec();
             if (!result) {
-                throw new NotFoundException(`Bicycle with ID ${id} not found`);
+                throw new NotFoundException(`Bicycle with ID ${bikeId} not found`);
             }
             return result;
         } catch (error) {
             throw error;
         }
     }
-
 
     async getStatistics(): Promise<any> {
         const totalCount = await this.bicycleModel.countDocuments().exec();

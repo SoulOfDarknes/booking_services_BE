@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ConflictException } from '@nestjs/common';
 
 import { BicycleService } from './bicycle.service';
 import { CreateBicycleDto } from './dto/create-bicycle.dto';
@@ -20,7 +20,7 @@ export class BicycleController {
 
     @Post()
     async addBicycle(@Body() createBicycleDto: CreateBicycleDto) {
-        return this.bicycleService.create(createBicycleDto);
+        return await this.bicycleService.create(createBicycleDto);
     }
 
     @Put(':id')

@@ -1,9 +1,13 @@
-import { IsString, IsNumber, IsOptional, MinLength, IsEnum } from 'class-validator';
+import { IsString, IsNumber, IsOptional, MinLength, IsEnum, IsNotEmpty } from 'class-validator';
 
 import { BicycleColors } from '@common/enums/bicycle-colors.enum';
 import { BicycleStatus } from '@common/enums/bicycle-status.enum';
 
 export class UpdateBicycleDto {
+    @IsString()
+    @IsNotEmpty()
+    readonly id: string;
+
     @IsString()
     @IsOptional()
     @MinLength(5)

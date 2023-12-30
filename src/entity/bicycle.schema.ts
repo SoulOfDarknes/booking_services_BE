@@ -4,6 +4,11 @@ import { BicycleStatus } from '@common/enums/bicycle-status.enum';
 import { BicycleColors } from '@common/enums/bicycle-colors.enum';
 
 export const BicycleSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     name: String,
     type: String,
     color: {
