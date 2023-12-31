@@ -18,7 +18,6 @@ To get started with the project, clone the repository and install the dependenci
 ```bash
 git clone [your repository link]
 cd [your project folder name]
-npm install
 ```
 - Run command
 
