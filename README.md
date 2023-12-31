@@ -13,6 +13,13 @@ Before installing the application, ensure that the following prerequisites are m
 
 - Environment Setup: Create a (.env) file in the root directory of the project. Use the provided (.env.defaults) as a template and fill in the necessary environment variables.
 
+To get started with the project, clone the repository and install the dependencies:
+
+```bash
+git clone [your repository link]
+cd [your project folder name]
+npm install
+```
 - Run command
 
 ```bash
