@@ -62,7 +62,7 @@ export class BicycleService {
     }
 
 
-    async remove(id: string): Promise<any> {
+    async remove(id: string): Promise<Bicycle> {
         try {
             const result = await this.bicycleModel.findOneAndDelete({ id }).exec();
             if (!result) {
@@ -74,7 +74,7 @@ export class BicycleService {
         }
     }
 
-    async getStatistics(): Promise<any> {
+    async getStatistics(): Promise<object> {
         const totalCount = await this.bicycleModel.countDocuments().exec();
         const availableCount = await this.bicycleModel.countDocuments({ status: 'Available' }).exec();
         const busyCount = await this.bicycleModel.countDocuments({ status: 'Busy' }).exec();
