@@ -11,8 +11,14 @@ Before installing the application, ensure that the following prerequisites are m
 
 - MongoDB: Install MongoDB server locally. Follow the instructions on the MongoDB official website for installation.
 
-- Environment Setup: Create a (.env) file in the root directory of the project. Use the provided (.env.defaults) as a template and fill in the necessary environment variables.
+- Environment Setup: Create a (.env) file in the root directory of the project. Use the provided (.env.example) as a template and fill in the necessary environment variables.
 
+To get started with the project, clone the repository and install the dependencies:
+
+```bash
+git clone [your repository link]
+cd [your project folder name]
+```
 - Run command
 
 ```bash
@@ -31,6 +37,22 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Testing with Postman
+
+To test the API with Postman:
+
+Install Postman: Download and install Postman from the official website.
+
+Import the API Collection: If an API collection is provided, import it into Postman.
+
+Set Environment Variables: In Postman, set up the environment variables corresponding to your .env settings.
+
+Send Requests: Use Postman to send requests to your API endpoints to test various functionalities like adding, viewing, editing, and deleting bicycles, along with managing bookings and viewing statistics.
+### Example
+
+- GET http://localhost:3333/bicycle/statistics
+- GET http://localhost:3333/bicycle
+- POST http://localhost:3333/bicycle
 
 ## Test
 
@@ -44,22 +66,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-## Deploy
-#### New API version deploy to Docker Hub
-Go to the branch that was chosen as branch for new version build: <br/>
-```git checkout branch-for-build```<br/>
-
-Tag this branch with new server version: <br/>
-```git tag sv0.0.5```<br/>
-
-Push branch and tag to the origin: <br/>
-```git push origin branch-for-build``` <br/>
-```git push --tags```<br/>
-
-#### Deploy latest version of build to AWS
-Remove local branch "deploy-server" if it exists <br/>
-```git branch -D deploy-server``` <br/>
-
-Create and push special branch "deploy-server" to the server: <br/>
-```git checkout -b deploy-server```<br/>
-```git push origin deploy-server --force```<br/>
